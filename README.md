@@ -1,4 +1,4 @@
-Assignment Description for Interview
+<img width="1432" alt="Screenshot 2024-05-17 at 10 58 10 am" src="https://github.com/bliongosari1/heidi-react-exam/assets/95192747/4748c978-8ce4-47fb-b8d5-201c98c1d8a5">Assignment Description for Interview
 Assignment: Develop a Joke Management React Component
 
 Objective
@@ -30,7 +30,11 @@ Favorite Jokes:
 - Use React state and props effectively.
 - Implement basic CRUD operations in a React component.
 
-Good luck!
+Good luck!!
 
-https://www.loom.com/share/437bfba983c643fdb76ada3b93fe402d?sid=9b6efc8e-06f6-4d46-9844-18d05008e4bc
+[Uploading Screenshot 2024-05-17 at 10.58.10 am.png…]()
+
+
+https://www.loom.com/share/437bfba983c643fdb76ada3b93fe402d?sid=f2d3e8a8-f45a-4a23-816e-81ba2faf755d
+
 
