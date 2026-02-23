@@ -9,9 +9,21 @@ time of the chat completion, enabling accurate debugging and analytics
 without needing to join tables or worry about is_managed status changes over time.
 """
 
-from typing import Optional, Any
-import posthog
-from amplitude import Amplitude, BaseEvent
+from typing import Optional, Any, TYPE_CHECKING
+
+try:
+    import posthog
+except ImportError:
+    posthog = None
+
+try:
+    from amplitude import Amplitude, BaseEvent
+except ImportError:
+    Amplitude = None
+    BaseEvent = None
+
+if TYPE_CHECKING:
+    from amplitude import Amplitude
 
 
 def track_evidence_chat_completed(
@@ -20,7 +32,7 @@ def track_evidence_chat_completed(
     is_managed: bool,
     team_id: Optional[str] = None,
     additional_properties: Optional[dict[str, Any]] = None,
-    amplitude_client: Optional[Amplitude] = None,
+    amplitude_client: Optional["Amplitude"] = None,
     posthog_api_key: Optional[str] = None,
 ) -> None:
     """
@@ -78,6 +90,9 @@ def _track_to_posthog(
         properties: Event properties including is_managed
         api_key: Optional PostHog API key
     """
+    if posthog is None:
+        return
+    
     if api_key:
         posthog.project_api_key = api_key
     
@@ -92,7 +107,7 @@ def _track_to_amplitude(
     user_id: str,
     event_name: str,
     properties: dict[str, Any],
-    client: Optional[Amplitude] = None,
+    client: Optional["Amplitude"] = None,
 ) -> None:
     """
     Send event to Amplitude analytics.
@@ -103,7 +118,7 @@ def _track_to_amplitude(
         properties: Event properties including is_managed
         client: Optional Amplitude client instance
     """
-    if client is None:
+    if client is None or BaseEvent is None:
         return
     
     event = BaseEvent(
